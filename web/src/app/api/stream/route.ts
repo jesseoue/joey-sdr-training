@@ -2,7 +2,7 @@
  * Server-Sent Events for real-time call updates
  */
 
-import { subscribe, getAllCalls, type CallData } from "@/lib/store";
+import { type CallData, getAllCalls, subscribe } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 

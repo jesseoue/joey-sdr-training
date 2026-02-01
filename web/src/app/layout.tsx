@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { AppSidebar } from "@/components/app-sidebar";
+import { Providers } from "@/components/providers";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],
@@ -13,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Joey Dashboard - SDR Training",
-	description: "Real-time cold call training with Joey Gilkey AI personas",
+	title: "SalesTraining - Cold Call Practice",
+	description: "AI-powered SDR training with realistic cold call simulations",
 };
 
 export default function RootLayout({
@@ -24,7 +28,14 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="dark">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<Providers>
+					<SidebarProvider>
+						<AppSidebar />
+						<SidebarInset>{children}</SidebarInset>
+					</SidebarProvider>
+				</Providers>
+			</body>
 		</html>
 	);
 }

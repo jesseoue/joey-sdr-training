@@ -4,7 +4,7 @@
  */
 
 import { type NextRequest, NextResponse } from "next/server";
-import { updateCall, addMessage, type CallData } from "@/lib/store";
+import { addMessage, type CallData, updateCall } from "@/lib/store";
 
 interface VapiMessage {
 	type: string;
@@ -106,5 +106,8 @@ export async function POST(request: NextRequest) {
 
 // Health check
 export async function GET() {
-	return NextResponse.json({ status: "ok", timestamp: new Date().toISOString() });
+	return NextResponse.json({
+		status: "ok",
+		timestamp: new Date().toISOString(),
+	});
 }

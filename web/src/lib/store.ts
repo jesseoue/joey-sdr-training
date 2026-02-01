@@ -69,9 +69,10 @@ export function updateCall(id: string, data: Partial<CallData>): CallData {
 	const updated = { ...existing, ...data };
 	calls.set(id, updated);
 
-	// Notify listeners
 	const eventType = data.status === "ended" ? "call-ended" : "call-updated";
-	listeners.forEach((listener) => listener(eventType, updated));
+	for (const listener of listeners) {
+		listener(eventType, updated);
+	}
 
 	return updated;
 }
@@ -80,7 +81,9 @@ export function addMessage(callId: string, message: CallMessage): void {
 	const call = calls.get(callId);
 	if (call) {
 		call.messages.push(message);
-		listeners.forEach((listener) => listener("message", call));
+		for (const listener of listeners) {
+			listener("message", call);
+		}
 	}
 }
 
